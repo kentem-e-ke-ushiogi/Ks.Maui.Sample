@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Ks.Maui.Controls.NoticeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ctrl="clr-namespace:Ks.Maui.Controls"
+    xmlns:mobile="clr-namespace:Ks.Mobile.Notice;assembly=Ks.Mobile.Notice"
+    x:Name="this"
+    BindingContext="{x:Reference this}">
+    <Border Background="White" Stroke="#7FDCF4">
+        <CollectionView
+            HorizontalOptions="FillAndExpand"
+            ItemsSource="{Binding Items, Source={x:Reference this}}"
+            VerticalScrollBarVisibility="Always">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ctrl:NoticeViewDataTemplete
+                        Title="{Binding Title}"
+                        x:DataType="mobile:MobileNoticeModel"
+                        Date="{Binding Date}"
+                        IsImportant="{Binding Important}"
+                        IsReaded="{Binding Readed}"
+                        Link="{Binding Link}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    Text="{Binding EmptyViewText, Source={x:Reference this}}"
+                    VerticalOptions="CenterAndExpand" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Border>
+</ContentView>

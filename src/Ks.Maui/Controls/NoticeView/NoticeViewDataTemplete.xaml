@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Ks.Maui.Controls.NoticeViewDataTemplete"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid
+        ColumnDefinitions="Auto,*,Auto"
+        HorizontalOptions="Fill"
+        RowDefinitions="*,Auto">
+        <!--  未読バッジ  -->
+        <AbsoluteLayout
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Margin="1"
+            WidthRequest="15">
+            <Ellipse
+                x:Name="EllipseBadge"
+                AbsoluteLayout.LayoutBounds="0.5, 0.5, 15, 15"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Fill="Red" />
+        </AbsoluteLayout>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Padding="5"
+            RowDefinitions="Auto,*">
+            <HorizontalStackLayout Grid.Row="0" Padding="0,0,5,5">
+                <!--  日付  -->
+                <Label
+                    x:Name="LblDate"
+                    HorizontalOptions="Start"
+                    TextColor="#8E8E93"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="{OnPlatform Default=85,
+                                              iOS=100}" />
+                <!--  重要  -->
+                <Border
+                    x:Name="BrdImport"
+                    BackgroundColor="#D22630"
+                    Stroke="#D22630"
+                    WidthRequest="65">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="重要"
+                        TextColor="White"
+                        VerticalOptions="CenterAndExpand" />
+                </Border>
+            </HorizontalStackLayout>
+            <!--  タイトル  -->
+            <Label
+                x:Name="LblTitle"
+                Grid.Row="1"
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalOptions="FillAndExpand"
+                LineBreakMode="TailTruncation"
+                MaxLines="3"
+                MinimumHeightRequest="60"
+                VerticalTextAlignment="Start" />
+        </Grid>
+        <Image
+            Grid.Row="0"
+            Grid.Column="2"
+            HorizontalOptions="Center"
+            Source="ks_maui_arrow_forward_glay.png"
+            VerticalOptions="Center"
+            WidthRequest="20" />
+        <BoxView
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            HeightRequest="1"
+            HorizontalOptions="Fill"
+            Color="#7FDCF4" />
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</ContentView>

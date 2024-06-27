@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Ks.Maui.Sample.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:nuget="clr-namespace:Ks.Maui.Controls;assembly=Ks.Maui"
+    x:Name="this2"
+    BindingContext="{x:Reference this2}">
+    <StackLayout>
+        <nuget:NoticeBadgeIconView x:Name="BadgeIconView" ClickedCommand="{Binding TestClickedCommand, Source={x:Reference this2}}" />
+        <!--<Button Command="{Binding ACommand, Source={x:Reference BadgeIconView}}" Text="ベルアイコンクリック" />-->
+        <!--<Button Command="{Binding UpdateViewCommand, Source={x:Reference BadgeIconView}}" Text="ベルアイコン更新" />-->
+        <nuget:NoticeView
+            x:Name="NoticeView"
+            Padding="10"
+            HeightRequest="250" />
+    </StackLayout>
+
+</ContentPage>
