@@ -7,13 +7,25 @@
     x:Name="this2"
     BindingContext="{x:Reference this2}">
     <StackLayout>
-        <nuget:NoticeBadgeIconView x:Name="BadgeIconView" ClickedCommand="{Binding TestClickedCommand, Source={x:Reference this2}}" />
+        <!--<nuget:NoticeBadgeIconView x:Name="BadgeIconView" ClickedCommand="{Binding TestClickedCommand, Source={x:Reference this2}}" />-->
         <!--<Button Command="{Binding ACommand, Source={x:Reference BadgeIconView}}" Text="ベルアイコンクリック" />-->
         <!--<Button Command="{Binding UpdateViewCommand, Source={x:Reference BadgeIconView}}" Text="ベルアイコン更新" />-->
+        <Button
+            Command="{Binding AllReadedCommand, Source={x:Reference NoticeView}}"
+            CommandParameter="{Binding Items, Source={x:Reference NoticeView}}"
+            Text="全て既読" />
+        <!--  通常のお知らせ  -->
         <nuget:NoticeView
             x:Name="NoticeView"
             Padding="10"
             HeightRequest="250" />
+        <!--  重要なお知らせ  -->
+        <nuget:NoticeView
+            x:Name="NoticeView2"
+            Padding="10"
+            HeightRequest="250"
+            IsImportantOnly="True" />
+
     </StackLayout>
 
 </ContentPage>

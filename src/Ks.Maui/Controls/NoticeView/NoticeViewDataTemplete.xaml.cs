@@ -124,7 +124,7 @@ public partial class NoticeViewDataTemplete : ContentView
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        var res = await Browser.Default.OpenAsync(Link, BrowserLaunchMode.External);
+        var res = await Browser.Default.OpenAsync(Link, BrowserLaunchMode.SystemPreferred);
         if (res)
         {
             IsReaded = true;

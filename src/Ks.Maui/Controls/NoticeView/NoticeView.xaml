@@ -3,10 +3,14 @@
     x:Class="Ks.Maui.Controls.NoticeView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:Ks.Maui.Converter"
     xmlns:ctrl="clr-namespace:Ks.Maui.Controls"
     xmlns:mobile="clr-namespace:Ks.Mobile.Notice;assembly=Ks.Mobile.Notice"
     x:Name="this"
     BindingContext="{x:Reference this}">
+    <ContentView.Resources>
+        <converter:ImportantVisibleConverter x:Key="importantVisibleConverter" />
+    </ContentView.Resources>
     <Border Background="White" Stroke="#7FDCF4">
         <CollectionView
             HorizontalOptions="FillAndExpand"
@@ -18,9 +22,15 @@
                         Title="{Binding Title}"
                         x:DataType="mobile:MobileNoticeModel"
                         Date="{Binding Date}"
-                        IsImportant="{Binding Important}"
                         IsReaded="{Binding Readed}"
-                        Link="{Binding Link}" />
+                        Link="{Binding Link}">
+                        <ctrl:NoticeViewDataTemplete.IsImportant>
+                            <MultiBinding Converter="{StaticResource importantVisibleConverter}">
+                                <Binding Path="Important" />
+                                <Binding Path="IsImportantOnly" Source="{x:Reference this}" />
+                            </MultiBinding>
+                        </ctrl:NoticeViewDataTemplete.IsImportant>
+                    </ctrl:NoticeViewDataTemplete>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
